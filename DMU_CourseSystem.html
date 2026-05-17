@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DMU Kazakhstan – Computing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background: #fff;
+    color: #111;
+  }
+
+  /* ── NAVBAR ───────────────────────────────────────────── */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-right: 40px;
+  }
+
+  .nav-logo-box {
+    background: #9B1B30;
+    color: #fff;
+    width: 52px;
+    height: 52px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    padding: 4px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .nav-link.active {
+    color: #9B1B30;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .btn-nav {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 22px;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 2px solid #111;
+    background: #fff;
+    color: #111;
+  }
+
+  .nav-user {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #9B1B30;
+  }
+
+  .btn-logout {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 22px;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 2px solid #9B1B30;
+    background: #fff;
+    color: #9B1B30;
+  }
+
+  /* ── GENERAL BUTTONS ──────────────────────────────────── */
+  .btn-red {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    background: #9B1B30;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 11px 28px;
+    cursor: pointer;
+  }
+
+  .btn-outline-red {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    background: #fff;
+    color: #9B1B30;
+    border: 2px solid #9B1B30;
+    border-radius: 24px;
+    padding: 9px 28px;
+    cursor: pointer;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    background: #fff;
+    text-align: center;
+    padding: 80px 24px 72px;
+  }
+
+  .hero h1 {
+    font-weight: 900;
+    font-size: 48px;
+    color: #111;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-weight: 500;
+    font-size: 15px;
+    color: #444;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* ── COURSES SECTION ──────────────────────────────────── */
+  .courses-section {
+    background: #9B1B30;
+    padding: 56px 40px 64px;
+  }
+
+  .courses-section h2 {
+    font-weight: 900;
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .course-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .course-card h3 {
+    font-weight: 700;
+    font-size: 17px;
+    color: #9B1B30;
+    line-height: 1.3;
+  }
+
+  /* ── PAGE WRAPPER ─────────────────────────────────────── */
+  .page-white {
+    background: #fff;
+    min-height: calc(100vh - 70px);
+    padding: 52px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-weight: 900;
+    font-size: 34px;
+    color: #111;
+    margin-bottom: 8px;
+  }
+
+  .page-sub {
+    font-weight: 500;
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 36px;
+  }
+
+  /* ── COURSE DETAIL ────────────────────────────────────── */
+  .back-btn {
+    background: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #9B1B30;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .detail-header {
+    margin-bottom: 36px;
+  }
+
+  .detail-header h1 {
+    font-weight: 900;
+    font-size: 32px;
+    color: #111;
+    margin-bottom: 10px;
+  }
+
+  .detail-header p {
+    font-weight: 500;
+    font-size: 15px;
+    color: #444;
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .section-label {
+    font-weight: 900;
+    font-size: 18px;
+    color: #9B1B30;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+
+  .module-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .module-item {
+    background: #f9f9f9;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    padding: 16px 20px;
+  }
+
+  .module-item h4 {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    margin-bottom: 4px;
+  }
+
+  .module-item p {
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .lecturer-box {
+    background: #9B1B30;
+    border-radius: 6px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .lecturer-avatar {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    color: #9B1B30;
+    flex-shrink: 0;
+  }
+
+  .lecturer-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .lecturer-title {
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 3px;
+  }
+
+  .enroll-bar {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .enrolled-badge {
+    background: #d4edda;
+    color: #1a6b35;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 24px;
+    border: 2px solid #1a6b35;
+  }
+
+  /* ── LECTURERS PAGE ───────────────────────────────────── */
+  .lecturers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .lecturer-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .lecturer-card .av {
+    width: 64px;
+    height: 64px;
+    background: #9B1B30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 24px;
+    color: #fff;
+    margin: 0 auto 14px;
+  }
+
+  .lecturer-card h3 {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111;
+    margin-bottom: 5px;
+  }
+
+  .lecturer-card p {
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+  }
+
+  /* ── CONTACT PAGE ─────────────────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-weight: 500;
+    font-size: 14px;
+    color: #444;
+    line-height: 2;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ── AUTH PAGES ───────────────────────────────────────── */
+  .auth-wrap {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 0 24px;
+  }
+
+  .auth-wrap h1 {
+    font-weight: 900;
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 6px;
+  }
+
+  .auth-wrap p {
+    font-weight: 500;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 28px;
+  }
+
+  .form-box {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 28px 28px 24px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
+  .field label {
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 7px;
+  }
+
+  .field input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 11px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111;
+    outline: none;
+    background: #fff;
+  }
+
+  .field input:focus {
+    border-color: #9B1B30;
+  }
+
+  .field input.err { border-color: #e53935; }
+  .field .err-msg { color: #e53935; font-size: 12px; font-weight: 600; margin-top: 5px; display: none; }
+
+  .btn-full {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    background: #9B1B30;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 13px;
+    cursor: pointer;
+  }
+
+  .auth-footer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .auth-footer span {
+    color: #9B1B30;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ── DASHBOARD ────────────────────────────────────────── */
+  .dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: #9B1B30;
+    border-radius: 6px;
+    padding: 24px 20px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .stat-card .num {
+    font-weight: 900;
+    font-size: 36px;
+    display: block;
+  }
+
+  .stat-card .lbl {
+    font-weight: 500;
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  /* ── ADMIN ────────────────────────────────────────────── */
+  .table-wrap {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: #9B1B30; }
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  td {
+    padding: 12px 16px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #111;
+    border-bottom: 1px solid #eee;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fafafa; }
+
+  /* ── TOAST ────────────────────────────────────────────── */
+  #toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a6b35;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  #toast.show { opacity: 1; }
+
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .success-wrap {
+    text-align: center;
+    padding: 80px 24px;
+  }
+
+  .success-wrap h2 {
+    font-weight: 900;
+    font-size: 28px;
+    color: #1a6b35;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 640px) {
+    .courses-grid, .lecturers-grid, .dash-stats { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo" onclick="go('home')">
+    <div class="nav-logo-box">DE MONTFORT UNIVERSITY KAZAKHSTAN</div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" id="nl-home"      onclick="go('home')">Home</button>
+    <button class="nav-link" id="nl-courses"   onclick="go('courses')">Courses</button>
+    <button class="nav-link" id="nl-lecturers" onclick="go('lecturers')">Lecturers</button>
+    <button class="nav-link" id="nl-contact"   onclick="go('contact')">Contact Us</button>
+    <button class="nav-link admin-link" id="nl-admin" style="display:none;color:#9B1B30" onclick="go('admin')">Admin</button>
+  </div>
+  <div class="nav-actions" id="nav-actions">
+    <button class="btn-nav" onclick="go('signup')">Sign Up</button>
+    <button class="btn-nav" onclick="go('login')">Log In</button>
+  </div>
+</nav>
+
+<div id="app"></div>
+<div id="toast"></div>
+
+<script>
+// ── DATABASE ────────────────────────────────────────────────────────────────
+const DB = {
+  courses: [
+    {
+      id: 1, name: "Computer Science Foundations",
+      description: "Build a solid foundation in computing. Covers core programming concepts, logic, and computer architecture essential for all computing pathways.",
+      lecturer: "Dr. Sarah Ahmed",
+      lecturerTitle: "Senior Lecturer in Computer Science",
+      modules: [
+        { title: "Introduction to Programming", desc: "Learn the fundamentals of programming using Python, covering variables, loops, functions and problem solving." },
+        { title: "Computer Architecture", desc: "Understand how computers work at the hardware level, from logic gates to CPU design and memory systems." },
+        { title: "Operating Systems", desc: "Explore process management, memory allocation, file systems and the principles behind modern operating systems." },
+        { title: "Discrete Mathematics", desc: "Study logic, sets, graphs and combinatorics — the mathematical backbone of computer science." },
+      ]
+    },
+    {
+      id: 2, name: "Cyber Security & Ethical Hacking",
+      description: "Learn to protect systems and networks from cyber threats. Gain hands-on experience in penetration testing, cryptography and digital forensics.",
+      lecturer: "Dr. Yusuf Al-Rashid",
+      lecturerTitle: "Head of Cybersecurity",
+      modules: [
+        { title: "Network Security Fundamentals", desc: "Study firewalls, intrusion detection, VPNs and secure network architecture principles." },
+        { title: "Ethical Hacking Techniques", desc: "Practice penetration testing methods using industry-standard tools in a controlled lab environment." },
+        { title: "Cryptography", desc: "Understand encryption algorithms, public key infrastructure and their applications in modern security." },
+        { title: "Digital Forensics", desc: "Learn to investigate cyber incidents, recover evidence and document findings for legal purposes." },
+      ]
+    },
+    {
+      id: 3, name: "Cloud Computing & DevOps",
+      description: "Master cloud platforms and modern DevOps practices. Learn to deploy, scale and automate infrastructure using industry tools.",
+      lecturer: "Prof. James Okafor",
+      lecturerTitle: "Professor of Cloud Technologies",
+      modules: [
+        { title: "Cloud Infrastructure Essentials", desc: "Introduction to AWS, Azure and GCP — compute, storage and networking in the cloud." },
+        { title: "Docker & Kubernetes", desc: "Containerise applications and manage them at scale using Docker and Kubernetes orchestration." },
+        { title: "CI/CD Pipelines", desc: "Build continuous integration and delivery pipelines using GitHub Actions, Jenkins and similar tools." },
+        { title: "Cloud Security & Compliance", desc: "Understand shared responsibility models, IAM, encryption and compliance frameworks in the cloud." },
+      ]
+    },
+    {
+      id: 4, name: "Machine Learning & AI",
+      description: "Dive into the world of artificial intelligence and machine learning. Build intelligent systems using modern frameworks and real-world datasets.",
+      lecturer: "Prof. Liu Wei",
+      lecturerTitle: "Professor of Artificial Intelligence",
+      modules: [
+        { title: "Introduction to Machine Learning", desc: "Cover supervised and unsupervised learning algorithms, model evaluation and feature engineering." },
+        { title: "Neural Networks & Deep Learning", desc: "Build and train neural networks using TensorFlow and PyTorch for classification and regression tasks." },
+        { title: "Natural Language Processing", desc: "Apply NLP techniques to text data — sentiment analysis, named entity recognition and transformers." },
+        { title: "Computer Vision", desc: "Process and analyse images using CNNs, object detection models and OpenCV." },
+      ]
+    },
+    {
+      id: 5, name: "Data Analysis & Visualization",
+      description: "Turn raw data into actionable insights. Learn statistical analysis, data wrangling and professional visualisation techniques.",
+      lecturer: "Dr. Elena Russo",
+      lecturerTitle: "Senior Lecturer in Data Science",
+      modules: [
+        { title: "Statistics for Data Science", desc: "Master descriptive and inferential statistics, probability distributions and hypothesis testing." },
+        { title: "Python for Data Analysis", desc: "Use Pandas, NumPy and Matplotlib to clean, analyse and visualise datasets effectively." },
+        { title: "Data Visualisation with Tableau", desc: "Create interactive dashboards and professional reports using Tableau and Power BI." },
+        { title: "Big Data Technologies", desc: "Introduction to Hadoop, Spark and processing large-scale datasets in distributed environments." },
+      ]
+    },
+    {
+      id: 6, name: "Full-Stack Web Development",
+      description: "Build complete web applications from front to back. Learn modern frameworks, databases and deployment practices used in industry.",
+      lecturer: "Dr. Sarah Ahmed",
+      lecturerTitle: "Senior Lecturer in Web Technologies",
+      modules: [
+        { title: "HTML, CSS & JavaScript", desc: "Master the core technologies of the web — semantic HTML, responsive CSS and modern JavaScript." },
+        { title: "React & Frontend Frameworks", desc: "Build interactive user interfaces with React, state management and component-driven architecture." },
+        { title: "Node.js & Backend Development", desc: "Create RESTful APIs and server-side applications using Node.js, Express and authentication." },
+        { title: "Database Integration", desc: "Design and integrate relational and NoSQL databases — MySQL, PostgreSQL and MongoDB." },
+      ]
+    },
+    {
+      id: 7, name: "Mobile App Development",
+      description: "Design and build mobile applications for iOS and Android. Learn native and cross-platform development with a focus on great user experience.",
+      lecturer: "Ms. Priya Nair",
+      lecturerTitle: "Lecturer in Mobile Development",
+      modules: [
+        { title: "iOS Development with Swift", desc: "Build native iOS applications using Swift, UIKit and Xcode — from UI to App Store deployment." },
+        { title: "Android Development with Kotlin", desc: "Create Android apps using Kotlin, Jetpack Compose and Android Studio best practices." },
+        { title: "Cross-Platform with Flutter", desc: "Build beautiful apps for both iOS and Android from a single Dart codebase using Flutter." },
+        { title: "Mobile UI/UX Design", desc: "Design intuitive mobile interfaces following Human Interface Guidelines and Material Design principles." },
+      ]
+    },
+    {
+      id: 8, name: "Game Development & Interactive Media",
+      description: "Create engaging games and interactive experiences. Learn game design principles, 3D development and the technical skills behind modern gaming.",
+      lecturer: "Prof. Kim Park",
+      lecturerTitle: "Professor of Game Development",
+      modules: [
+        { title: "Game Design Principles", desc: "Study game mechanics, level design, player psychology and the process of designing compelling games." },
+        { title: "Unity 3D Development", desc: "Build 2D and 3D games using Unity, C# scripting, physics systems and asset management." },
+        { title: "Graphics Programming", desc: "Explore shaders, rendering pipelines and real-time graphics techniques using OpenGL and HLSL." },
+        { title: "Multiplayer & Networking", desc: "Implement multiplayer functionality, lobby systems and real-time networking in game applications." },
+      ]
+    },
+    {
+      id: 9, name: "Blockchain Development & Web3",
+      description: "Explore the decentralised future of the internet. Learn blockchain fundamentals, smart contract development and Web3 application building.",
+      lecturer: "Dr. Tom Bridges",
+      lecturerTitle: "Lecturer in Blockchain Technologies",
+      modules: [
+        { title: "Blockchain Fundamentals", desc: "Understand how blockchain works — consensus mechanisms, distributed ledgers, and Ethereum architecture." },
+        { title: "Smart Contract Development", desc: "Write, test and deploy smart contracts using Solidity and Hardhat on the Ethereum network." },
+        { title: "Decentralised Applications", desc: "Build dApps that connect to blockchain networks using Web3.js and MetaMask integration." },
+        { title: "Web3 Integration", desc: "Connect traditional web frontends to blockchain backends — NFTs, DeFi protocols and IPFS storage." },
+      ]
+    },
+  ],
+  users: [
+    { id: 1, name: "Admin User", email: "admin@dmu.kz", password: "admin123", role: "admin" }
+  ],
+  enrollments: [],
+  _uid: 2,
+  _eid: 1,
+};
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let currentUser = null;
+let page = "home";
+let param = null;
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function go(p, pr) {
+  page = p; param = pr !== undefined ? pr : null;
+  window.scrollTo(0, 0);
+  render();
+}
+
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+// ── NAV UPDATE ────────────────────────────────────────────────────────────────
+function updateNav() {
+  // Active link
+  ["home","courses","lecturers","contact"].forEach(id => {
+    const el = document.getElementById("nl-" + id);
+    if (el) el.className = "nav-link" + (page === id ? " active" : "");
+  });
+
+  const adminBtn = document.getElementById("nl-admin");
+  if (adminBtn) adminBtn.style.display = (currentUser && currentUser.role === "admin") ? "" : "none";
+
+  const actions = document.getElementById("nav-actions");
+  if (currentUser) {
+    actions.innerHTML = `
+      <button class="nav-link" onclick="go('dashboard')" style="color:#9B1B30;font-weight:700">Dashboard</button>
+      <span class="nav-user">Hi, ${currentUser.name.split(" ")[0]}</span>
+      <button class="btn-logout" onclick="doLogout()">Log Out</button>
+    `;
+  } else {
+    actions.innerHTML = `
+      <button class="btn-nav" onclick="go('signup')">Sign Up</button>
+      <button class="btn-nav" onclick="go('login')">Log In</button>
+    `;
+  }
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  updateNav();
+  const app = document.getElementById("app");
+  const pages = { home, courses, course, lecturers, contact, login, signup, dashboard, admin };
+  const fn = pages[page];
+  app.innerHTML = fn ? fn() : home();
+  bind();
+}
+
+// ── HOME ──────────────────────────────────────────────────────────────────────
+function home() {
+  const cards = DB.courses.map(c => `
+    <div class="course-card">
+      <h3>${c.name}</h3>
+      <button class="btn-red" onclick="go('course',${c.id})">More Info</button>
+    </div>
+  `).join("");
+
+  return `
+    <div class="hero">
+      <h1>Find Your<br>Computing Course</h1>
+      <p>Explore our computing degrees and qualifications. Browse modules, meet your lecturers, and register for the course that fits your future.</p>
+      <div class="hero-btns">
+        <button class="btn-red" onclick="go('courses')">Browse courses</button>
+        <button class="btn-red" onclick="go('signup')">Create Account</button>
+      </div>
+    </div>
+    <div class="courses-section">
+      <h2>All Courses</h2>
+      <div class="courses-grid">${cards}</div>
+    </div>
+  `;
+}
+
+// ── COURSES ───────────────────────────────────────────────────────────────────
+function courses() {
+  const cards = DB.courses.map(c => `
+    <div class="course-card">
+      <h3>${c.name}</h3>
+      <button class="btn-red" onclick="go('course',${c.id})">More Info</button>
+    </div>
+  `).join("");
+
+  return `
+    <div class="courses-section" style="min-height:calc(100vh - 70px)">
+      <h2>All Courses</h2>
+      <div class="courses-grid">${cards}</div>
+    </div>
+  `;
+}
+
+// ── COURSE DETAIL ─────────────────────────────────────────────────────────────
+function course() {
+  const c = DB.courses.find(x => x.id === param);
+  if (!c) return `<div class="page-white"><p>Course not found.</p></div>`;
+
+  const enrolled = currentUser && DB.enrollments.some(e => e.userId === currentUser.id && e.courseId === c.id);
+
+  const modules = c.modules.map(m => `
+    <div class="module-item">
+      <h4>${m.title}</h4>
+      <p>${m.desc}</p>
+    </div>
+  `).join("");
+
+  const enrollArea = enrolled
+    ? `<span class="enrolled-badge">✓ Enrolled</span>`
+    : `<button class="btn-red" id="enroll-btn" onclick="doEnroll(${c.id})">${currentUser ? "Register for this Course" : "Sign In to Register"}</button>`;
+
+  return `
+    <div class="page-white">
+      <button class="back-btn" onclick="go('courses')">← Back to Courses</button>
+      <div class="detail-header">
+        <h1>${c.name}</h1>
+        <p>${c.description}</p>
+        <div class="enroll-bar">
+          ${enrollArea}
+          <span id="enroll-msg" style="color:#1a6b35;font-weight:700;font-size:14px"></span>
+        </div>
+      </div>
+
+      <div class="section-label">Modules</div>
+      <div class="module-list">${modules}</div>
+
+      <div class="section-label">Lecturer</div>
+      <div class="lecturer-box">
+        <div class="lecturer-avatar">${c.lecturer[0]}</div>
+        <div>
+          <div class="lecturer-name">${c.lecturer}</div>
+          <div class="lecturer-title">${c.lecturerTitle}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function doEnroll(courseId) {
+  if (!currentUser) { go('login'); return; }
+  if (DB.enrollments.some(e => e.userId === currentUser.id && e.courseId === courseId)) return;
+  DB.enrollments.push({ id: DB._eid++, userId: currentUser.id, courseId, enrolledAt: new Date().toISOString() });
+  const btn = document.getElementById("enroll-btn");
+  if (btn) btn.outerHTML = `<span class="enrolled-badge">✓ Enrolled</span>`;
+  const msg = document.getElementById("enroll-msg");
+  if (msg) msg.textContent = "Successfully registered!";
+  toast("Registered for course!");
+}
+
+// ── LECTURERS ─────────────────────────────────────────────────────────────────
+function lecturers() {
+  const unique = {};
+  DB.courses.forEach(c => {
+    if (!unique[c.lecturer]) unique[c.lecturer] = { name: c.lecturer, title: c.lecturerTitle, courses: [] };
+    unique[c.lecturer].courses.push(c.name);
+  });
+
+  const cards = Object.values(unique).map(l => `
+    <div class="lecturer-card">
+      <div class="av">${l.name[0]}</div>
+      <h3>${l.name}</h3>
+      <p>${l.title}</p>
+      <p style="margin-top:8px;color:#9B1B30;font-size:12px;font-weight:700">${l.courses.join(" · ")}</p>
+    </div>
+  `).join("");
+
+  return `
+    <div class="page-white" style="max-width:960px">
+      <h1 class="page-title">Our Lecturers</h1>
+      <p class="page-sub">Meet the academic staff delivering our computing programmes</p>
+      <div class="lecturers-grid">${cards}</div>
+    </div>
+  `;
+}
+
+// ── CONTACT ───────────────────────────────────────────────────────────────────
+function contact() {
+  return `
+    <div class="page-white" style="max-width:960px">
+      <h1 class="page-title">Contact Us</h1>
+      <p class="page-sub">Get in touch with the DMU Kazakhstan Computing College</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label" style="margin-top:0">Address</div>
+          <p>De Montfort University Kazakhstan<br>Almaty, Kazakhstan</p>
+          <div class="section-label">Email</div>
+          <p>computing@dmu.kz</p>
+          <div class="section-label">Phone</div>
+          <p>+7 (727) 000-0000</p>
+          <div class="section-label">Office Hours</div>
+          <p>Monday – Friday<br>9:00 AM – 5:00 PM</p>
+        </div>
+        <div>
+          <div class="section-label" style="margin-top:0">Send a Message</div>
+          <div class="contact-form">
+            <div class="field">
+              <label>Your Name</label>
+              <input type="text" placeholder="Jane Smith"/>
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" placeholder="jane@example.com"/>
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea rows="5" style="width:100%;border:1px solid #ccc;border-radius:6px;padding:11px 14px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:500;resize:vertical;outline:none" placeholder="Your message…"></textarea>
+            </div>
+            <button class="btn-red" onclick="toast('Message sent!')">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────────────────
+function login() {
+  return `
+    <div class="auth-wrap">
+      <h1>Welcome back</h1>
+      <p>Sign in to your account to continue</p>
+      <div class="form-box">
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="li-email" placeholder="you@dmu.kz"/>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="li-pass" placeholder="••••••••"/>
+          <span class="err-msg" id="li-err"></span>
+        </div>
+        <button class="btn-full" onclick="doLogin()">Log In</button>
+        <p style="text-align:center;margin-top:14px;font-size:12px;color:#888">
+          Demo: <strong>admin@dmu.kz</strong> / <strong>admin123</strong>
+        </p>
+      </div>
+      <div class="auth-footer">No account? <span onclick="go('signup')">Sign up here</span></div>
+    </div>
+  `;
+}
+
+function doLogin() {
+  const email = document.getElementById("li-email").value.trim();
+  const pass  = document.getElementById("li-pass").value;
+  const err   = document.getElementById("li-err");
+  const found = DB.users.find(u => u.email === email && u.password === pass);
+  if (!found) {
+    err.textContent = "Incorrect email or password.";
+    err.style.display = "block";
+    document.getElementById("li-pass").classList.add("err");
+    return;
+  }
+  currentUser = found;
+  toast("Welcome back, " + found.name.split(" ")[0] + "!");
+  go("dashboard");
+}
+
+// ── SIGNUP ────────────────────────────────────────────────────────────────────
+function signup() {
+  return `
+    <div class="auth-wrap">
+      <h1>Create Account</h1>
+      <p>Register as a new applicant</p>
+      <div class="form-box">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="su-name" placeholder="Jane Smith"/>
+          <span class="err-msg" id="e-name"></span>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="su-email" placeholder="jane@example.com"/>
+          <span class="err-msg" id="e-email"></span>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="su-pass" placeholder="At least 6 characters"/>
+          <span class="err-msg" id="e-pass"></span>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <input type="password" id="su-conf" placeholder="Repeat your password"/>
+          <span class="err-msg" id="e-conf"></span>
+        </div>
+        <button class="btn-full" onclick="doSignup()">Create Account</button>
+      </div>
+      <div class="auth-footer">Already registered? <span onclick="go('login')">Log in here</span></div>
+    </div>
+  `;
+}
+
+function se(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = msg ? "block" : "none";
+}
+
+function doSignup() {
+  const name  = document.getElementById("su-name").value.trim();
+  const email = document.getElementById("su-email").value.trim();
+  const pass  = document.getElementById("su-pass").value;
+  const conf  = document.getElementById("su-conf").value;
+  se("e-name",""); se("e-email",""); se("e-pass",""); se("e-conf","");
+  let ok = true;
+  if (!name)              { se("e-name","Name is required.");         ok = false; }
+  if (!email.includes("@")){ se("e-email","Enter a valid email.");    ok = false; }
+  else if (DB.users.find(u => u.email === email)) { se("e-email","Email already in use."); ok = false; }
+  if (pass.length < 6)    { se("e-pass","Minimum 6 characters.");     ok = false; }
+  if (pass !== conf)      { se("e-conf","Passwords do not match.");    ok = false; }
+  if (!ok) return;
+  const u = { id: DB._uid++, name, email, password: pass, role: "applicant" };
+  DB.users.push(u);
+  currentUser = u;
+  document.getElementById("app").innerHTML = `
+    <div class="success-wrap">
+      <div style="font-size:52px;margin-bottom:16px">✅</div>
+      <h2>Account Created!</h2>
+      <p style="color:#666;font-weight:500">Redirecting you to courses…</p>
+    </div>
+  `;
+  updateNav();
+  setTimeout(() => go("courses"), 1800);
+}
+
+function doLogout() {
+  currentUser = null;
+  toast("Logged out successfully.");
+  go("home");
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function dashboard() {
+  if (!currentUser) return login();
+  const myEnrollments = DB.enrollments.filter(e => e.userId === currentUser.id);
+  const myCourses = myEnrollments.map(e => DB.courses.find(c => c.id === e.courseId)).filter(Boolean);
+
+  const courseCards = myCourses.length
+    ? myCourses.map(c => `
+        <div class="course-card" style="border:1px solid #e0e0e0;cursor:pointer" onclick="go('course',${c.id})">
+          <h3>${c.name}</h3>
+          <span style="background:#d4edda;color:#1a6b35;font-weight:700;font-size:13px;padding:6px 16px;border-radius:20px;border:1px solid #1a6b35">Enrolled ✓</span>
+        </div>
+      `).join("")
+    : `<div class="empty-state"><p style="margin-bottom:16px">You have not enrolled in any courses yet.</p><button class="btn-red" onclick="go('courses')">Browse Courses</button></div>`;
+
+  return `
+    <div class="page-white" style="max-width:960px">
+      <h1 class="page-title">My Dashboard</h1>
+      <p class="page-sub">Welcome back, ${currentUser.name}</p>
+      <div class="dash-stats">
+        <div class="stat-card"><span class="num">${myCourses.length}</span><span class="lbl">Enrolled Courses</span></div>
+        <div class="stat-card"><span class="num">${DB.courses.length}</span><span class="lbl">Total Courses</span></div>
+        <div class="stat-card"><span class="num">${DB.modules ? DB.modules.length : DB.courses.length * 4}</span><span class="lbl">Total Modules</span></div>
+      </div>
+      <div class="section-label" style="margin-top:0">My Courses</div>
+      <div class="courses-grid" style="background:#9B1B30;padding:24px;border-radius:6px">${courseCards}</div>
+    </div>
+  `;
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
+function admin() {
+  if (!currentUser || currentUser.role !== "admin") return home();
+
+  const userRows = DB.users.map(u => `
+    <tr>
+      <td>${u.id}</td>
+      <td><strong>${u.name}</strong></td>
+      <td>${u.email}</td>
+      <td>${u.role}</td>
+      <td>${DB.enrollments.filter(e => e.userId === u.id).length}</td>
+    </tr>
+  `).join("");
+
+  const enrollRows = DB.enrollments.length
+    ? DB.enrollments.map(e => {
+        const u = DB.users.find(x => x.id === e.userId);
+        const c = DB.courses.find(x => x.id === e.courseId);
+        return `<tr><td>${u?.name}</td><td>${c?.name}</td><td>${new Date(e.enrolledAt).toLocaleString()}</td></tr>`;
+      }).join("")
+    : `<tr><td colspan="3" style="text-align:center;color:#888;padding:20px">No enrollments yet.</td></tr>`;
+
+  return `
+    <div class="page-white" style="max-width:960px">
+      <h1 class="page-title">Admin Panel</h1>
+      <p class="page-sub">System overview</p>
+      <div class="dash-stats" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-card"><span class="num">${DB.users.length}</span><span class="lbl">Users</span></div>
+        <div class="stat-card"><span class="num">${DB.courses.length}</span><span class="lbl">Courses</span></div>
+        <div class="stat-card"><span class="num">36</span><span class="lbl">Modules</span></div>
+        <div class="stat-card"><span class="num">${DB.enrollments.length}</span><span class="lbl">Enrollments</span></div>
+      </div>
+      <div class="section-label" style="margin-top:0">Registered Users</div>
+      <div class="table-wrap">
+        <table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Enrollments</th></tr></thead>
+        <tbody>${userRows}</tbody></table>
+      </div>
+      <div class="section-label">All Enrollments</div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Student</th><th>Course</th><th>Enrolled At</th></tr></thead>
+        <tbody>${enrollRows}</tbody></table>
+      </div>
+    </div>
+  `;
+}
+
+// ── BIND ENTER KEY ────────────────────────────────────────────────────────────
+function bind() {
+  if (page === "login") {
+    ["li-email","li-pass"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onkeydown = e => { if (e.key === "Enter") doLogin(); };
+    });
+  }
+  if (page === "signup") {
+    ["su-name","su-email","su-pass","su-conf"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onkeydown = e => { if (e.key === "Enter") doSignup(); };
+    });
+  }
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>
